@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/info_nav_graph"
+    app:startDestination="@id/welcomeInfoFrag">
+
+    <fragment
+        android:id="@+id/welcomeInfoFrag"
+        android:name="com.example.ex9.WelcomeInfoFrag"
+        android:label="welcome_info_fragment"
+        tools:layout="@layout/welcome_info_fragment" >
+        <action
+            android:id="@+id/action_welcomeInfoFrag_to_ageFrag"
+            app:destination="@id/ageFrag"
+            app:enterAnim="@android:anim/slide_in_left"
+            app:exitAnim="@android:anim/slide_out_right" />
+    </fragment>
+    <fragment
+        android:id="@+id/ageFrag"
+        android:name="com.example.ex9.AgeFrag"
+        android:label="age_fragment"
+        tools:layout="@layout/age_fragment" >
+        <action
+            android:id="@+id/action_ageFrag_to_termsFrag"
+            app:destination="@id/termsFrag" />
+    </fragment>
+    <fragment
+        android:id="@+id/mathFrag"
+        android:name="com.example.ex9.MathFrag"
+        android:label="math_fragment"
+        tools:layout="@layout/math_fragment" />
+    <fragment
+        android:id="@+id/nameFrag"
+        android:name="com.example.ex9.NameFrag"
+        android:label="name_fragment"
+        tools:layout="@layout/name_fragment" >
+        <action
+            android:id="@+id/action_nameFrag_to_mathFrag"
+            app:destination="@id/mathFrag" />
+    </fragment>
+    <fragment
+        android:id="@+id/termsFrag"
+        android:name="com.example.ex9.TermsFrag"
+        android:label="terms_fragment"
+        tools:layout="@layout/terms_fragment" >
+        <action
+            android:id="@+id/action_termsFrag_to_nameFrag"
+            app:destination="@id/nameFrag" />
+    </fragment>
+</navigation>

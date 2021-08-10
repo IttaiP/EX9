@@ -11,6 +11,7 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 public class HeaderFrag extends Fragment {
 
@@ -23,6 +24,15 @@ public class HeaderFrag extends Fragment {
     public static HeaderFrag newInstance() {
         return new HeaderFrag();
     }
+
+
+    public void setText(String text){
+        View view = getView();
+        if(view!=null){
+            TextView textView = view.findViewById(R.id.head_text);
+            textView.setText(text);
+        }
+    };
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,

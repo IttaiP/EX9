@@ -4,17 +4,16 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#FFFFFF"
-    tools:context=".HeaderFrag">
+    tools:context=".WelcomeInfoFrag">
 
-    <TextView
-        android:id="@+id/head_text"
-        android:layout_width="wrap_content"
+
+    <Button
+        android:id="@+id/start_button"
+        android:layout_width="115dp"
         android:layout_height="wrap_content"
-        android:text="Welcome! Push The Button To Get Started"
+        android:text="Get Started!"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-
 </androidx.constraintlayout.widget.ConstraintLayout>
