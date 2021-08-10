@@ -23,10 +23,9 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:background="#990000"
-        >
+        />
 
 
-    </androidx.fragment.app.FragmentContainerView>
 
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/bottom_frame"
@@ -37,10 +36,11 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/top_frame"
         tools:background="#009900"
+        app:defaultNavHost="true"
+        app:navGraph="@navigation/info_nav_graph"/>
 
-        >
 
-    </androidx.fragment.app.FragmentContainerView>
+
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
