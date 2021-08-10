@@ -51,7 +51,5 @@ public class MathFrag extends Fragment {
 
     }
 
-// TODO: Use the ViewModel
-    }
 
 }

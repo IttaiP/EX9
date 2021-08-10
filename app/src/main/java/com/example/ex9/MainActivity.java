@@ -18,16 +18,16 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         FragmentContainerView topFrame = findViewById(R.id.top_frame);
-        FragmentContainerView bottomFrame = findViewById(R.id.bottom_frame);
+        FragmentContainerView bottomFrame = findViewById(R.id.nav_host_fragment);
 
         HeaderFrag headerFrag = new HeaderFrag();
-        TermsFrag ageFrag = new TermsFrag();
+        WelcomeInfoFrag welcomeFrag = new WelcomeInfoFrag();
 
 
         getSupportFragmentManager()
                 .beginTransaction()
                 .replace(topFrame.getId(), headerFrag)
-                .replace(bottomFrame.getId(),ageFrag)
+                .replace(bottomFrame.getId(),welcomeFrag)
                 .commit();
 
 

@@ -5,6 +5,7 @@
     android:id="@+id/info_nav_graph"
     app:startDestination="@id/welcomeInfoFrag">
 
+
     <fragment
         android:id="@+id/welcomeInfoFrag"
         android:name="com.example.ex9.WelcomeInfoFrag"
@@ -20,7 +21,7 @@
         android:id="@+id/ageFrag"
         android:name="com.example.ex9.AgeFrag"
         android:label="age_fragment"
-        tools:layout="@layout/age_fragment" >
+        tools:layout="@layout/age_fragment">
         <action
             android:id="@+id/action_ageFrag_to_termsFrag"
             app:destination="@id/termsFrag" />
@@ -29,23 +30,23 @@
         android:id="@+id/mathFrag"
         android:name="com.example.ex9.MathFrag"
         android:label="math_fragment"
-        tools:layout="@layout/math_fragment" />
+        tools:layout="@layout/math_fragment" >
+        <action
+            android:id="@+id/action_mathFrag_to_nameFrag"
+            app:destination="@id/nameFrag" />
+    </fragment>
     <fragment
         android:id="@+id/nameFrag"
         android:name="com.example.ex9.NameFrag"
         android:label="name_fragment"
-        tools:layout="@layout/name_fragment" >
-        <action
-            android:id="@+id/action_nameFrag_to_mathFrag"
-            app:destination="@id/mathFrag" />
-    </fragment>
+        tools:layout="@layout/name_fragment" />
     <fragment
         android:id="@+id/termsFrag"
         android:name="com.example.ex9.TermsFrag"
         android:label="terms_fragment"
         tools:layout="@layout/terms_fragment" >
         <action
-            android:id="@+id/action_termsFrag_to_nameFrag"
-            app:destination="@id/nameFrag" />
+            android:id="@+id/action_termsFrag_to_mathFrag"
+            app:destination="@id/mathFrag" />
     </fragment>
 </navigation>

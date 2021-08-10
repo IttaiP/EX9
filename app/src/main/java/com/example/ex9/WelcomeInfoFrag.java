@@ -7,6 +7,10 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.NavController;
+import androidx.navigation.NavDirections;
+import androidx.navigation.Navigation;
+import androidx.navigation.fragment.NavHostFragment;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,6 +20,8 @@ public class WelcomeInfoFrag extends Fragment {
 
     private InfoViewModel mViewModel;
     private SharedViewModel sViewModel;
+
+
 
 
     public StartButtonInterface listener = null;
@@ -47,6 +53,14 @@ public class WelcomeInfoFrag extends Fragment {
 //                    listener.onButtonClicked();
 //                    mViewModel.
 //                }
+
+                NavController navController = Navigation.findNavController(view);
+                NavDirections action =
+                        AgeFragDirections
+                                .actionSpecifyAmountFragmentToConfirmationFragment();
+                Navigation.findNavController(view).navigate(action);
+//
+//                Navigation.findNavController(view).navigate(action);
                 sViewModel.started.setValue(true);
 
             }
