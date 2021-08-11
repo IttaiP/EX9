@@ -1,5 +1,6 @@
 package com.example.ex9;
 
+import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
 import android.os.Bundle;
@@ -11,11 +12,15 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 public class HeaderFrag extends Fragment {
 
-    private HeaderViewModel mViewModel;
+    private SharedViewModel sViewModel;
+    ProgressBar progressBar;
+    TextView textView;
 
     public HeaderFrag(){
         super(R.layout.header_fragment);
@@ -29,7 +34,7 @@ public class HeaderFrag extends Fragment {
     public void setText(String text){
         View view = getView();
         if(view!=null){
-            TextView textView = view.findViewById(R.id.head_text);
+            textView = view.findViewById(R.id.head_text);
             textView.setText(text);
         }
     };
@@ -41,10 +46,19 @@ public class HeaderFrag extends Fragment {
     }
 
     @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
-        mViewModel = new ViewModelProvider(this).get(HeaderViewModel.class);
-        // TODO: Use the ViewModel
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        sViewModel = new ViewModelProvider(this).get(SharedViewModel.class);
+        progressBar = (ProgressBar) view.findViewById(R.id.progressBar);
+//        sViewModel.progress.observe(getViewLifecycleOwner(), new Observer<Integer>() {
+//            @Override
+//            public void onChanged(Integer integer) {
+//                progressBar.setProgress(integer);
+//            }
+//        });
+
+
     }
+
 
 }

@@ -20,11 +20,13 @@ import android.widget.TextView;
 
 public class MathFrag extends Fragment {
 
+    private SharedViewModel sViewModel;
     private MathViewModel mViewModel;
     private TextView question;
     private EditText answer;
     private Button continueButton;
     MathQuestion mathQuestion;
+
 
 
     public static MathFrag newInstance() {
@@ -44,6 +46,8 @@ public class MathFrag extends Fragment {
         answer = (EditText) view.findViewById(R.id.answer);
         continueButton = (Button) view.findViewById(R.id.continue_button);
         mViewModel = new ViewModelProvider(this).get(MathViewModel.class);
+        sViewModel = new ViewModelProvider(getActivity()).get(SharedViewModel.class);
+
 
         // todo: generate random questions and their answers
         newQuestion();
@@ -54,6 +58,8 @@ public class MathFrag extends Fragment {
             @Override
             public void onClick(View v) {
                 if(Integer.parseInt(answer.getText().toString())==(mathQuestion.getAnswer())){
+                    sViewModel.age.setValue(true);
+                    sViewModel.progress.setValue(sViewModel.progress.getValue()+1);
                     NavHostFragment navHostFragment =(NavHostFragment) requireActivity().getSupportFragmentManager().findFragmentById(R.id.nav_host_fragment);
                     NavController navController = navHostFragment.getNavController();
                     navController.navigate(R.id.action_mathFrag_to_nameFrag);

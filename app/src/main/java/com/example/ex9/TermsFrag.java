@@ -30,6 +30,8 @@ public class TermsFrag extends Fragment {
     private TermsViewModel mViewModel;
     private CheckBox termsAccepted;
     private Button continueButton;
+    private SharedViewModel sViewModel;
+
 
     public static TermsFrag newInstance() {
         return new TermsFrag();
@@ -47,6 +49,8 @@ public class TermsFrag extends Fragment {
         termsAccepted = (CheckBox) view.findViewById(R.id.checkBox);
         continueButton = (Button) view.findViewById(R.id.continue_button);
         mViewModel = new ViewModelProvider(this).get(TermsViewModel.class);
+        sViewModel = new ViewModelProvider(getActivity()).get(SharedViewModel.class);
+
 
         termsAccepted.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
@@ -68,7 +72,10 @@ public class TermsFrag extends Fragment {
         continueButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                    NavHostFragment navHostFragment =(NavHostFragment) requireActivity().getSupportFragmentManager().findFragmentById(R.id.nav_host_fragment);
+                sViewModel.terms.setValue(true);
+                sViewModel.progress.setValue(sViewModel.progress.getValue()+1);
+
+                NavHostFragment navHostFragment =(NavHostFragment) requireActivity().getSupportFragmentManager().findFragmentById(R.id.nav_host_fragment);
                     NavController navController = navHostFragment.getNavController();
                     navController.navigate(R.id.action_termsFrag_to_mathFrag);
             }

@@ -45,7 +45,7 @@ public class WelcomeInfoFrag extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         mViewModel = new ViewModelProvider(this).get(InfoViewModel.class);
-        sViewModel = new ViewModelProvider(this).get(SharedViewModel.class);
+        sViewModel = new ViewModelProvider(getActivity()).get(SharedViewModel.class);
 
 //        NavHostFragment navHostFragment = (NavHostFragment) requireActivity().getSupportFragmentManager()
 //                .findFragmentById(R.id.nav_host_fragment);
@@ -61,6 +61,8 @@ public class WelcomeInfoFrag extends Fragment {
 //                    listener.onButtonClicked();
 //                    mViewModel.
 //                }
+                sViewModel.started.setValue(true);
+                sViewModel.progress.setValue(sViewModel.progress.getValue()+1);
                 NavHostFragment navHostFragment =(NavHostFragment) requireActivity().getSupportFragmentManager().findFragmentById(R.id.nav_host_fragment);
                 NavController navController = navHostFragment.getNavController();
                 navController.navigate(R.id.action_welcomeInfoFrag_to_ageFrag);

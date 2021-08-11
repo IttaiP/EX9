@@ -25,6 +25,8 @@ public class AgeFrag extends Fragment {
     private TextView ageNum;
     private Button continueButton;
     private int age;
+    private SharedViewModel sViewModel;
+
 
     public AgeFrag(){
         super(R.layout.age_fragment);
@@ -49,6 +51,8 @@ public class AgeFrag extends Fragment {
         ageNum = (TextView) view.findViewById(R.id.age_num);
         ageNum.setText("17");
         mViewModel = new ViewModelProvider(this).get(AgeViewModel.class);
+        sViewModel = new ViewModelProvider(getActivity()).get(SharedViewModel.class);
+
         mViewModel.age.observe(getViewLifecycleOwner(), new Observer<Integer>() {
             @Override
             public void onChanged(Integer integer) {
@@ -82,7 +86,9 @@ public class AgeFrag extends Fragment {
         continueButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                    NavHostFragment navHostFragment =(NavHostFragment) requireActivity().getSupportFragmentManager().findFragmentById(R.id.nav_host_fragment);
+                sViewModel.age.setValue(true);
+                sViewModel.progress.setValue(sViewModel.progress.getValue()+1);
+                NavHostFragment navHostFragment =(NavHostFragment) requireActivity().getSupportFragmentManager().findFragmentById(R.id.nav_host_fragment);
                     NavController navController = navHostFragment.getNavController();
                     navController.navigate(R.id.action_ageFrag_to_termsFrag);
             }

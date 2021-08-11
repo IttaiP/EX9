@@ -22,6 +22,7 @@ import android.widget.EditText;
 
 public class NameFrag extends Fragment {
 
+    private SharedViewModel sViewModel;
     private NameViewModel mViewModel;
     private EditText firstName;
     private EditText lastName;
@@ -90,7 +91,7 @@ public class NameFrag extends Fragment {
                 mViewModel.lastName.setValue(s.toString());
             }
         });
-
+        sViewModel = new ViewModelProvider(getActivity()).get(SharedViewModel.class);
         mViewModel = new ViewModelProvider(this).get(NameViewModel.class);
         mViewModel.firstName.observe(getViewLifecycleOwner(), new Observer<String>() {
             @Override
