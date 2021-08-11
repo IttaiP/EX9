@@ -24,6 +24,7 @@ public class MathFrag extends Fragment {
     private TextView question;
     private EditText answer;
     private Button continueButton;
+    MathQuestion mathQuestion;
 
 
     public static MathFrag newInstance() {
@@ -41,24 +42,26 @@ public class MathFrag extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         question = (TextView) view.findViewById(R.id.question);
         answer = (EditText) view.findViewById(R.id.answer);
-
-        // todo: generate random questions and their answers
-        String trueAnswer = "";
-
         continueButton = (Button) view.findViewById(R.id.continue_button);
         mViewModel = new ViewModelProvider(this).get(MathViewModel.class);
+
+        // todo: generate random questions and their answers
+        newQuestion();
+
 
 
         continueButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(answer.getText().equals(trueAnswer)){
+                if(Integer.parseInt(answer.getText().toString())==(mathQuestion.getAnswer())){
                     NavHostFragment navHostFragment =(NavHostFragment) requireActivity().getSupportFragmentManager().findFragmentById(R.id.nav_host_fragment);
                     NavController navController = navHostFragment.getNavController();
                     navController.navigate(R.id.action_mathFrag_to_nameFrag);
                 }
                 else{
-                    // todo: answer wrong
+                    answer.setText("");
+                    answer.setHint("WRONG!");
+                    newQuestion();
                 }
             }
         });
@@ -71,6 +74,12 @@ public class MathFrag extends Fragment {
 //            }
 //        });
 
+    }
+
+    private void newQuestion(){
+        mathQuestion = mViewModel.generateRandomQuestion();
+        question.setText(Integer.toString(mathQuestion.getNum1())+"+"
+                +Integer.toString(mathQuestion.getNum2()) + "=?");
     }
 
 

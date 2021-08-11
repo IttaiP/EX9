@@ -9,4 +9,14 @@ public class NameViewModel extends ViewModel {
     public MutableLiveData<String> lastName = new MutableLiveData<>("");
 
 
+
+    public boolean CheckNameIsLegal(){
+        // todo: implement
+        return checkName(firstName.getValue().toString()) && checkName(lastName.getValue().toString());
+    }
+
+    private boolean checkName(String name){
+        return name.matches("[A-Za-z]+") && (name.length()>2);
+    }
+
 }

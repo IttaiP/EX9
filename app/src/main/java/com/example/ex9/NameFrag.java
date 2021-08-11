@@ -1,5 +1,6 @@
 package com.example.ex9;
 
+import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
 import android.os.Bundle;
@@ -10,6 +11,8 @@ import androidx.fragment.app.Fragment;
 import androidx.navigation.NavController;
 import androidx.navigation.fragment.NavHostFragment;
 
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -42,33 +45,69 @@ public class NameFrag extends Fragment {
         firstName = (EditText) view.findViewById(R.id.first_name);
         lastName = (EditText) view.findViewById(R.id.last_name);
         finishButton = (Button) view.findViewById(R.id.finish);
+        mViewModel = new ViewModelProvider(this).get(NameViewModel.class);
+
 
         finishButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(CheckNameIsLegal(firstName.getText().toString())){
-                    // todo: go to after screen
-                }
-                else{
-                    // todo: illegal name
-                }
+                //Todo: move to after screen
+
+            }
+        });
+
+        firstName.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                mViewModel.firstName.setValue(s.toString());
+            }
+        });
+
+
+        lastName.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                mViewModel.lastName.setValue(s.toString());
             }
         });
 
         mViewModel = new ViewModelProvider(this).get(NameViewModel.class);
-//        mViewModel.accept.observe(getViewLifecycleOwner(), new Observer<Integer>() {
-//            @Override
-//            public void onChanged(Integer integer) {
-//                // TODO
-//                // might be redundent
-//            }
-//        });
+        mViewModel.firstName.observe(getViewLifecycleOwner(), new Observer<String>() {
+            @Override
+            public void onChanged(String s) {
+                finishButton.setEnabled(mViewModel.CheckNameIsLegal());
+            }
 
-    }
+        });
 
-    private boolean CheckNameIsLegal(String name){
-        // todo: implement
-        return true;
+        mViewModel.lastName.observe(getViewLifecycleOwner(), new Observer<String>() {
+            @Override
+            public void onChanged(String s) {
+                finishButton.setEnabled(mViewModel.CheckNameIsLegal());
+            }
+
+        });
+
     }
 
 
