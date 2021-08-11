@@ -8,10 +8,13 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.NavController;
+import androidx.navigation.fragment.NavHostFragment;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
@@ -20,6 +23,7 @@ public class AgeFrag extends Fragment {
     private AgeViewModel mViewModel;
     private SeekBar seekBar;
     private TextView ageNum;
+    private Button continueButton;
     private int age;
 
     public AgeFrag(){
@@ -40,6 +44,7 @@ public class AgeFrag extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        continueButton = (Button) view.findViewById(R.id.continueButton);
         seekBar = (SeekBar) view.findViewById(R.id.seek_bar);
         ageNum = (TextView) view.findViewById(R.id.age_num);
         ageNum.setText("17");
@@ -65,6 +70,14 @@ public class AgeFrag extends Fragment {
             @Override
             public void onStopTrackingTouch(SeekBar seekBar) {
                 ageNum.setText(Integer.toString(seekBar.getProgress()));
+            }
+        });
+        continueButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                    NavHostFragment navHostFragment =(NavHostFragment) requireActivity().getSupportFragmentManager().findFragmentById(R.id.nav_host_fragment);
+                    NavController navController = navHostFragment.getNavController();
+                    navController.navigate(R.id.action_ageFrag_to_termsFrag);
             }
         });
     }

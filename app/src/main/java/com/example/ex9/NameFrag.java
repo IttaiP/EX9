@@ -7,6 +7,8 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.NavController;
+import androidx.navigation.fragment.NavHostFragment;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -40,6 +42,19 @@ public class NameFrag extends Fragment {
         firstName = (EditText) view.findViewById(R.id.first_name);
         lastName = (EditText) view.findViewById(R.id.last_name);
         finishButton = (Button) view.findViewById(R.id.finish);
+
+        finishButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(CheckNameIsLegal(firstName.getText().toString())){
+                    // todo: go to after screen
+                }
+                else{
+                    // todo: illegal name
+                }
+            }
+        });
+
         mViewModel = new ViewModelProvider(this).get(NameViewModel.class);
 //        mViewModel.accept.observe(getViewLifecycleOwner(), new Observer<Integer>() {
 //            @Override
@@ -49,6 +64,11 @@ public class NameFrag extends Fragment {
 //            }
 //        });
 
+    }
+
+    private boolean CheckNameIsLegal(String name){
+        // todo: implement
+        return true;
     }
 
 

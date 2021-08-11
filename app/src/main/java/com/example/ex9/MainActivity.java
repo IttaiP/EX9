@@ -2,6 +2,7 @@ package com.example.ex9;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentContainerView;
+import androidx.fragment.app.FragmentManager;
 import androidx.lifecycle.ViewModelProvider;
 
 import android.os.Bundle;
@@ -9,6 +10,7 @@ import android.os.Bundle;
 public class MainActivity extends AppCompatActivity {
 
     SharedViewModel svm;
+    FragmentManager supportFragManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,12 +25,13 @@ public class MainActivity extends AppCompatActivity {
         HeaderFrag headerFrag = new HeaderFrag();
         WelcomeInfoFrag welcomeFrag = new WelcomeInfoFrag();
 
-
-        getSupportFragmentManager()
-                .beginTransaction()
-                .replace(topFrame.getId(), headerFrag)
-                .replace(bottomFrame.getId(),welcomeFrag)
-                .commit();
+        supportFragManager = getSupportFragmentManager();
+        svm.fragMan.setValue(supportFragManager);
+//        getSupportFragmentManager()
+//                .beginTransaction()
+//                .replace(topFrame.getId(), headerFrag)
+//                .replace(bottomFrame.getId(),welcomeFrag)
+//                .commit();
 
 
 //        ageFrag.listener = new StartButtonInterface() {

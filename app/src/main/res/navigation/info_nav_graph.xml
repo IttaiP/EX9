@@ -14,8 +14,8 @@
         <action
             android:id="@+id/action_welcomeInfoFrag_to_ageFrag"
             app:destination="@id/ageFrag"
-            app:enterAnim="@android:anim/slide_in_left"
-            app:exitAnim="@android:anim/slide_out_right" />
+            app:enterAnim="@navigation/in_right"
+            app:exitAnim="@navigation/out_left" />
     </fragment>
     <fragment
         android:id="@+id/ageFrag"
@@ -24,7 +24,9 @@
         tools:layout="@layout/age_fragment">
         <action
             android:id="@+id/action_ageFrag_to_termsFrag"
-            app:destination="@id/termsFrag" />
+            app:destination="@id/termsFrag"
+            app:enterAnim="@navigation/in_right"
+            app:exitAnim="@navigation/out_left"/>
     </fragment>
     <fragment
         android:id="@+id/mathFrag"
@@ -33,7 +35,9 @@
         tools:layout="@layout/math_fragment" >
         <action
             android:id="@+id/action_mathFrag_to_nameFrag"
-            app:destination="@id/nameFrag" />
+            app:destination="@id/nameFrag"
+            app:enterAnim="@navigation/in_right"
+            app:exitAnim="@navigation/out_left"/>
     </fragment>
     <fragment
         android:id="@+id/nameFrag"
@@ -47,6 +51,8 @@
         tools:layout="@layout/terms_fragment" >
         <action
             android:id="@+id/action_termsFrag_to_mathFrag"
-            app:destination="@id/mathFrag" />
+            app:destination="@id/mathFrag"
+            app:enterAnim="@navigation/in_right"
+            app:exitAnim="@navigation/out_left"/>
     </fragment>
 </navigation>

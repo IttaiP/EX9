@@ -7,6 +7,7 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelStoreOwner;
 import androidx.navigation.NavController;
 import androidx.navigation.NavDirections;
 import androidx.navigation.Navigation;
@@ -45,6 +46,13 @@ public class WelcomeInfoFrag extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         mViewModel = new ViewModelProvider(this).get(InfoViewModel.class);
         sViewModel = new ViewModelProvider(this).get(SharedViewModel.class);
+
+//        NavHostFragment navHostFragment = (NavHostFragment) requireActivity().getSupportFragmentManager()
+//                .findFragmentById(R.id.nav_host_fragment);
+//        NavController navCo = navHostFragment.getNavController();
+
+
+
         // TODO: Use the ViewModel
         view.findViewById(R.id.start_button).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -53,12 +61,15 @@ public class WelcomeInfoFrag extends Fragment {
 //                    listener.onButtonClicked();
 //                    mViewModel.
 //                }
+                NavHostFragment navHostFragment =(NavHostFragment) requireActivity().getSupportFragmentManager().findFragmentById(R.id.nav_host_fragment);
+                NavController navController = navHostFragment.getNavController();
+                navController.navigate(R.id.action_welcomeInfoFrag_to_ageFrag);
+//                Navigation.createNavigateOnClickListener(R.id.ageFrag, null);
 
-                NavController navController = Navigation.findNavController(view);
-                NavDirections action =
-                        AgeFragDirections
-                                .actionSpecifyAmountFragmentToConfirmationFragment();
-                Navigation.findNavController(view).navigate(action);
+//                NavHostFragment navHostFragment = (NavHostFragment) sViewModel.fragMan.getValue().findFragmentById(R.id.nav_host_fragment);
+//                NavController navController = navHostFragment.getNavController();
+//                NavDirections action = WelcomeInfoFragDirections.actionWelcomeInfoFragToAgeFrag();
+//                navController.navigate(action);
 //
 //                Navigation.findNavController(view).navigate(action);
                 sViewModel.started.setValue(true);
