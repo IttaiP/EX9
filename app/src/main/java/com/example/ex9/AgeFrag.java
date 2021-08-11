@@ -54,6 +54,13 @@ public class AgeFrag extends Fragment {
             public void onChanged(Integer integer) {
                 // TODO
                 seekBar.setProgress(integer); // might be redundent
+                if(integer>=18){
+                    continueButton.setEnabled(true);
+                }
+                else{
+                    continueButton.setEnabled(false);
+
+                }
             }
         });
         seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
