@@ -27,6 +27,9 @@
             app:destination="@id/termsFrag"
             app:enterAnim="@navigation/in_right"
             app:exitAnim="@navigation/out_left"/>
+        <action
+            android:id="@+id/action_ageFrag_to_welcomeInfoFrag2"
+            app:destination="@id/welcomeInfoFrag" />
     </fragment>
     <fragment
         android:id="@+id/mathFrag"

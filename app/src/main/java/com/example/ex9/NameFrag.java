@@ -33,10 +33,15 @@ public class NameFrag extends Fragment {
         return new NameFrag();
     }
 
+
     @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
-                             @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.name_fragment, container, false);
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        // Inflate the layout for this fragment
+        View view =  inflater.inflate(R.layout.name_fragment, container, false);
+        view.getBackground().setAlpha(25);
+        return view;
+
     }
 
 
@@ -53,6 +58,7 @@ public class NameFrag extends Fragment {
             @Override
             public void onClick(View v) {
                 //Todo: move to after screen
+                sViewModel.progress.setValue(sViewModel.progress.getValue()+1);
 
             }
         });

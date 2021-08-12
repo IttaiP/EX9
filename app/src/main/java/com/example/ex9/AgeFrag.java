@@ -11,6 +11,7 @@ import androidx.fragment.app.Fragment;
 import androidx.navigation.NavController;
 import androidx.navigation.fragment.NavHostFragment;
 
+import android.os.Trace;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,7 +19,7 @@ import android.widget.Button;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
-public class AgeFrag extends Fragment {
+public class AgeFrag extends Fragment{
 
     private AgeViewModel mViewModel;
     private SeekBar seekBar;
@@ -36,11 +37,15 @@ public class AgeFrag extends Fragment {
         return new AgeFrag();
     }
 
-    @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
-                             @Nullable Bundle savedInstanceState) {
 
-        return inflater.inflate(R.layout.age_fragment, container, false);
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        // Inflate the layout for this fragment
+        View view =  inflater.inflate(R.layout.age_fragment, container, false);
+        view.getBackground().setAlpha(25);
+        return view;
+
     }
 
     @Override
@@ -94,5 +99,7 @@ public class AgeFrag extends Fragment {
             }
         });
     }
+
+
 
 }

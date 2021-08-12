@@ -17,7 +17,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-public class WelcomeInfoFrag extends Fragment {
+public class WelcomeInfoFrag extends Fragment{
 
     private InfoViewModel mViewModel;
     private SharedViewModel sViewModel;
@@ -36,10 +36,14 @@ public class WelcomeInfoFrag extends Fragment {
     }
 
     @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
-                             @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.welcome_info_fragment, container, false);
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        // Inflate the layout for this fragment
+        View view =  inflater.inflate(R.layout.welcome_info_fragment, container, false);
+        view.getBackground().setAlpha(25);
+        return view;
     }
+
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
@@ -50,6 +54,8 @@ public class WelcomeInfoFrag extends Fragment {
 //        NavHostFragment navHostFragment = (NavHostFragment) requireActivity().getSupportFragmentManager()
 //                .findFragmentById(R.id.nav_host_fragment);
 //        NavController navCo = navHostFragment.getNavController();
+
+
 
 
 
@@ -89,4 +95,19 @@ public class WelcomeInfoFrag extends Fragment {
 
     }
 
+//    @Override
+//    public boolean onBackPressed() {
+////        if (myCondition) {
+////            //action not popBackStack
+////            return true;
+////        } else {
+////            return false;
+////        }
+//        sViewModel.started.setValue(true);
+//        sViewModel.progress.setValue(sViewModel.progress.getValue()-1);
+//        NavHostFragment navHostFragment =(NavHostFragment) requireActivity().getSupportFragmentManager().findFragmentById(R.id.nav_host_fragment);
+//        NavController navController = navHostFragment.getNavController();
+//        navController.navigate(R.id.action_welcomeInfoFrag_to_ageFrag);
+//
+//    }
 }

@@ -18,13 +18,14 @@ import android.widget.TextView;
 
 public class HeaderFrag extends Fragment {
 
-    private SharedViewModel sViewModel;
+    private SharedViewModel svm;
     ProgressBar progressBar;
     TextView textView;
 
     public HeaderFrag(){
         super(R.layout.header_fragment);
     }
+
 
     public static HeaderFrag newInstance() {
         return new HeaderFrag();
@@ -34,7 +35,6 @@ public class HeaderFrag extends Fragment {
     public void setText(String text){
         View view = getView();
         if(view!=null){
-            textView = view.findViewById(R.id.head_text);
             textView.setText(text);
         }
     };
@@ -48,7 +48,8 @@ public class HeaderFrag extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        sViewModel = new ViewModelProvider(this).get(SharedViewModel.class);
+        svm = new ViewModelProvider(getActivity()).get(SharedViewModel.class);
+        textView = view.findViewById(R.id.head_text);
         progressBar = (ProgressBar) view.findViewById(R.id.progressBar);
 //        sViewModel.progress.observe(getViewLifecycleOwner(), new Observer<Integer>() {
 //            @Override
@@ -56,6 +57,15 @@ public class HeaderFrag extends Fragment {
 //                progressBar.setProgress(integer);
 //            }
 //        });
+
+        svm.done.observe(getViewLifecycleOwner(), new Observer<Boolean>() {
+            @Override
+            public void onChanged(Boolean aBoolean) {
+                if(aBoolean){
+                    textView.setText("DONE");
+                }
+            }
+        });
 
 
     }

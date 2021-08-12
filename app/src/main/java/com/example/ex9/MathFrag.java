@@ -28,15 +28,14 @@ public class MathFrag extends Fragment {
     MathQuestion mathQuestion;
 
 
-
-    public static MathFrag newInstance() {
-        return new MathFrag();
-    }
-
     @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
-                             @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.math_fragment, container, false);
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        // Inflate the layout for this fragment
+        View view =  inflater.inflate(R.layout.math_fragment, container, false);
+        view.getBackground().setAlpha(25);
+        return view;
+
     }
 
     @Override
@@ -45,12 +44,17 @@ public class MathFrag extends Fragment {
         question = (TextView) view.findViewById(R.id.question);
         answer = (EditText) view.findViewById(R.id.answer);
         continueButton = (Button) view.findViewById(R.id.continue_button);
-        mViewModel = new ViewModelProvider(this).get(MathViewModel.class);
+        mViewModel = new ViewModelProvider(getActivity()).get(MathViewModel.class);
         sViewModel = new ViewModelProvider(getActivity()).get(SharedViewModel.class);
 
 
         // todo: generate random questions and their answers
-        newQuestion();
+        if(mViewModel.answered){
+            restoreOldQuestion();
+        }
+        else{
+            newQuestion();
+        }
 
 
 
@@ -60,6 +64,7 @@ public class MathFrag extends Fragment {
                 if(Integer.parseInt(answer.getText().toString())==(mathQuestion.getAnswer())){
                     sViewModel.age.setValue(true);
                     sViewModel.progress.setValue(sViewModel.progress.getValue()+1);
+                    mViewModel.Continued();
                     NavHostFragment navHostFragment =(NavHostFragment) requireActivity().getSupportFragmentManager().findFragmentById(R.id.nav_host_fragment);
                     NavController navController = navHostFragment.getNavController();
                     navController.navigate(R.id.action_mathFrag_to_nameFrag);
@@ -84,6 +89,12 @@ public class MathFrag extends Fragment {
 
     private void newQuestion(){
         mathQuestion = mViewModel.generateRandomQuestion();
+        question.setText(Integer.toString(mathQuestion.getNum1())+"+"
+                +Integer.toString(mathQuestion.getNum2()) + "=?");
+    }
+
+    private void restoreOldQuestion(){
+        mathQuestion = mViewModel.question;
         question.setText(Integer.toString(mathQuestion.getNum1())+"+"
                 +Integer.toString(mathQuestion.getNum2()) + "=?");
     }

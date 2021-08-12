@@ -8,6 +8,8 @@ public class MathViewModel extends ViewModel {
     // TODO: Implement the ViewModel
     int number1;
     int number2;
+    MathQuestion question;
+    boolean answered = false;
     Random rand = new Random();
 
     private int generateRandomNum(){
@@ -15,7 +17,14 @@ public class MathViewModel extends ViewModel {
     }
 
     public MathQuestion generateRandomQuestion(){
-        return new MathQuestion(generateRandomNum(), generateRandomNum());
+        number1 = generateRandomNum();
+        number2 = generateRandomNum();
+        question = new MathQuestion(number1, number2);
+        return question;
+    }
+
+    public void Continued(){
+        answered = true;
     }
 
 
